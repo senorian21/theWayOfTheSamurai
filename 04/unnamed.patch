@@ -1,0 +1,26 @@
+Index: __tests__/e2e/course.api.test.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/__tests__/e2e/course.api.test.ts b/__tests__/e2e/course.api.test.ts
+new file mode 100644
+--- /dev/null	(date 1742820803749)
++++ b/__tests__/e2e/course.api.test.ts	(date 1742820803749)
+@@ -0,0 +1,16 @@
++import request from 'supertest'
++import { app } from '../../src'
++
++describe('/course', () => {
++    it('should return 200 and empty array', async () => {
++        await request(app)
++            .get('/courses')
++            .expect(200, [])
++    })
++
++    it('should return 404 for not existing course', async () => {
++        await request(app)
++            .get('/courses/9999999')
++            .expect(404)
++    })
++})
